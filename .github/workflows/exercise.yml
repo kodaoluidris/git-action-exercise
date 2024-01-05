@@ -16,3 +16,5 @@ jobs:
       run: npm ci
     - name: run lint 
       run: npm run lint
+    - name: print git context
+      run: echo "${{ github.event}}"
