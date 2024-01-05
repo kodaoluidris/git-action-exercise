@@ -17,4 +17,4 @@ jobs:
     - name: run lint 
       run: npm run lint
     - name: print git context
-      run: echo "${{ github.event}}"
+      run: echo "${{ toJSON(github.event)}}"
