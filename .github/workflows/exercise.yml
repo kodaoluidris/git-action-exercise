@@ -5,6 +5,7 @@ env:
     DB_PASSWORD: ${{ secrets.DB_PASSWORD}}
 jobs: 
   test-lint:
+    environment: test
     runs-on: macos-latest
     steps: 
     - name: print git context
