@@ -1,8 +1,25 @@
 name: Github Exercise
-on: issues
+on: push
+env:
+    DB_USERNAME: ${{ secrets.DB_USERNAME}}
+    DB_PASSWORD: ${{ secrets.DB_PASSWORD}}
 jobs: 
   test-lint:
     runs-on: macos-latest
     steps: 
     - name: print git context
-      run: echo "${{ toJSON(github.event)}}"
+      run: echo "${{ toJSON(github.event)}}" # github context object
+    - name: Get Code
+      uses: actions/checkout@v3
+    - name: install dependencies
+      run: npm ci
+    - name: lint
+      run: npm run lint
+    - name: test
+      run: npm run test
+    - name: buil code
+      run: npm run build
+    - name: print username
+      run: | 
+        echo "DB_USERNAME: ${{ env.DB_USERNAME}}"
+        echo "DB:PASSWORD: ${{ env.DB_PASSWORD }}"
